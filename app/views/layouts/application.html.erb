@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CookbookClient</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <a href="/client/recipes">Home</a>
+
+    <% if current_user %>
+      <h3>Logged in as: <%= current_user %></h3>
+      <a href="/client/logout" data-method="delete">Log out</a>
+      <a href="/client/recipes/new">New Recipe</a>
+    <% else %>
+      <a href="/client/users/new">Sign up</a>
+      <a href="/client/login">Log in</a>
+    <% end %>
+
+    <ul>
+      <% flash.each do |name, message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+    <%= yield %>
+  </body>
+</html>
